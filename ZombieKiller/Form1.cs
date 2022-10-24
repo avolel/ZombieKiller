@@ -52,17 +52,20 @@ namespace ZombieKiller
             lblAmmo.Text = $"Ammo: {PlayerAmmo}";
             lblScore.Text = $"Kills: {PlayerScore}";
 
-            //Player Movement
+            //Move Player Left
             if (GoLeft == true && player1.Left > 0)
                 player1.Left -= GameSpeed;
+            //Move Player Right
             if (GoRight == true && player1.Left + player1.Width < this.ClientSize.Width)
                 player1.Left += GameSpeed;
-            if(GoUp == true && player1.Top > 40)
+            //Move Player Up
+            if (GoUp == true && player1.Top > 40)
                 player1.Top -= GameSpeed;
+            //Move Player Down
             if (GoDown == true && player1.Top + player1.Height < this.ClientSize.Height)
                 player1.Top += GameSpeed;
 
-            foreach(Control control in this.Controls)
+            foreach (Control control in this.Controls)
             {
                 //Pick Up Ammo
                 if(control is PictureBox && (string)control.Tag == "ammo")
@@ -75,9 +78,9 @@ namespace ZombieKiller
                     }
                 }
 
-                if(control is PictureBox && (string)control.Tag == "walker")
-                {
-                    //Walker Causes Damage to Player decrease Health by 1.
+                //If Walker Causes Damage to Player decrease Health by 1.
+                if (control is PictureBox && (string)control.Tag == "walker")
+                {                   
                     if (player1.Bounds.IntersectsWith(control.Bounds))
                     {
                         PlayerHealth -= 1;
@@ -114,7 +117,7 @@ namespace ZombieKiller
                     //Check for Bullets and Walkers
                     if(item is PictureBox && (string)item.Tag == "bullet" && control is PictureBox && (string)control.Tag == "walker")
                     {
-                        //Bullet Hits Walker.
+                        //If Bullet Hits Walker Increment Kill Score.
                         if (control.Bounds.IntersectsWith(item.Bounds))
                         {
                             PlayerScore++;
@@ -125,6 +128,7 @@ namespace ZombieKiller
                             this.Controls.Add(control);
                             walkers.Remove(((PictureBox)control));
                             ((PictureBox)control).Dispose();
+                            //Spawn More Wlakers.
                             SpawnZombies();
                         }
                     }
@@ -137,6 +141,7 @@ namespace ZombieKiller
             if (IsGameOver)
                 return;
 
+            //Turn player in a different direction when the appropiate key is pressed (Left, Right, Up or Down).
             switch (e.KeyCode)
             {
                 case Keys.Left:
@@ -180,7 +185,7 @@ namespace ZombieKiller
                     break;
             }
 
-            //Fire Gun
+            //Press Space Bar to Fire Gun
             if(e.KeyCode == Keys.Space && PlayerAmmo > 0 && IsGameOver == false)
             {
                 PlayerAmmo--;
