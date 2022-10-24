@@ -206,7 +206,7 @@ namespace ZombieKiller
             walker.Tag = "walker";
             walker.Image = Properties.Resources.zdown;
             walker.Left = randomGenerator.Next(0, 900);
-            walker.Top = randomGenerator.Next(0, 800);
+            walker.Top = randomGenerator.Next(0, 700);
             walker.SizeMode = PictureBoxSizeMode.AutoSize;
             walkers.Add(walker);
             this.Controls.Add(walker);
@@ -235,7 +235,7 @@ namespace ZombieKiller
 
             walkers.Clear();
 
-            for(int i = 0; i < 3; i++)
+            for(int i = 0; i < 4; i++)
                 SpawnZombies();
 
             GoUp = false;
