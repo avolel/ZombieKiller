@@ -12,6 +12,9 @@ namespace ZombieKiller
 {
     public partial class Form1 : Form
     {
+        const int AMMOSIZE = 100;
+        const int NUMBEROFZOMBIESTOSPAWN = 4;
+
         bool GoLeft { get; set; }
         bool GoRight { get; set; }
         bool GoUp { get; set; }
@@ -21,7 +24,7 @@ namespace ZombieKiller
         string PlayerFacing = "up";
         int PlayerHealth = 100;
         int GameSpeed = 10;
-        int PlayerAmmo = 10;
+        int PlayerAmmo = AMMOSIZE;
         int PlayerScore = 0;
         int ZombieSpeed = 1;
 
@@ -68,7 +71,7 @@ namespace ZombieKiller
                     {
                         this.Controls.Remove(control);
                         ((PictureBox)control).Dispose();
-                        PlayerAmmo += 10;
+                        PlayerAmmo += 5;
                     }
                 }
 
@@ -235,7 +238,7 @@ namespace ZombieKiller
 
             walkers.Clear();
 
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < NUMBEROFZOMBIESTOSPAWN; i++)
                 SpawnZombies();
 
             GoUp = false;
@@ -246,7 +249,7 @@ namespace ZombieKiller
 
             PlayerHealth = 100;
             PlayerScore = 0;
-            PlayerAmmo = 10;
+            PlayerAmmo = AMMOSIZE;
 
             gametimer.Start();
         }
