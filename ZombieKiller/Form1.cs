@@ -23,7 +23,7 @@ namespace ZombieKiller
         int GameSpeed = 10;
         int PlayerAmmo = 10;
         int PlayerScore = 0;
-        int ZombieSpeed = 3;
+        int ZombieSpeed = 1;
 
         Random randomGenerator = new Random();
 
